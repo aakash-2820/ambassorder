@@ -201,12 +201,12 @@ export default function HomePage() {
               <h3>Task 6</h3>
               <p>Create a design with AI</p>
             </a>
-            <a href="https://aiskillshouse.com/student/qr-mediator?uid=3916&promptId=19" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 6)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator?uid=3916&promptId=19" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 7)}>
               <div className="task-icon">📊</div>
               <h3>Task 7</h3>
               <p>Analyze data with Gemini</p>
             </a>
-            <a href="https://aiskillshouse.com/student/qr-mediator?uid=3916&promptId=18" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 7)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator?uid=3916&promptId=18" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 8)}>
               <div className="task-icon">🏆</div>
               <h3>Task 8</h3>
               <p>Submit your final project</p>

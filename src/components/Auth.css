@@ -162,6 +162,7 @@
   font-weight: 400;
 }
 
+
 /* Form */
 .auth-form {
   display: flex;
@@ -299,6 +300,7 @@
 .auth-link:hover::after {
   width: 100%;
 }
+
 
 /* Responsive Design */
 @media (max-width: 640px) {
