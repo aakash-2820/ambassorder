@@ -107,10 +107,9 @@ export default function HomePage() {
             </p>
 
             <div className="experience-section">
-              <h2 className="experience-title">Experience</h2>
+              <h2 className="experience-title">Dhaniska Sri L P </h2>
               <p className="experience-description">
-                Leading workshops on AI applications, mentoring students in machine learning, and driving initiatives to
-                make advanced technology accessible to all learners.
+                Student of Computer Science and Business System.
               </p>
             </div>
           </div>
