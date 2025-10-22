@@ -73,8 +73,8 @@ export default function Login() {
                 className="form-input"
               />
             </div>
-            <Link to="/HomePage">
 
+            <Link to="/HomePage">
             <button type="submit" disabled={isLoading} className="auth-button">
               {isLoading ? "Signing in..." : "Login"}
             </button>
