@@ -45,36 +45,7 @@ export default function TasksPage() {
       link: "https://forms.gle/example6",
     },
   ]
-  const handleTaskClick = async (e, taskId) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found, user might not be logged in.");
-      return;
-    }
-
-    e.preventDefault();
-    try{
-      const response = await fetch(`http://localhost:5000/api/tasks/complete`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({ taskId }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Task completion failed");
-      }
-      console.log("✅ Task marked as completed:", data);
-    }
-    catch(err) {
-      console.error("Error during task completion:", err.message);
-    }
-  }
-
+  
   return (
     <div className="tasks-page">
       <div className="tasks-header">
