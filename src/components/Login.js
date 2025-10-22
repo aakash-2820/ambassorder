@@ -8,7 +8,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -23,13 +23,34 @@ export default function Login() {
     }
 
     setIsLoading(true);
-    setTimeout(() => {
+    try{
+      const response = await fetch("http://localhost:5000/api/logins", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Login failed");
+      }
+      console.log("✅ Login successful:", data);
+      setTimeout(() => {
       setIsLoading(false);
       console.log("Login successful:", { email });
 
       // ✅ Simple redirect to home page (React)
       window.location.href = "/";
     }, 1000);
+    }
+    catch(err) {
+      console.error("Error during login:", err.message);
+      setError(err.message);
+    }
+    
   };
 
   return (
