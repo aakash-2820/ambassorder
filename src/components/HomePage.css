@@ -1,0 +1,750 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.home-page {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+/* Animated Background */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.06;
+  filter: blur(50px);
+}
+
+.shape-1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #000000, #333333);
+  border-radius: 50%;
+  top: 5%;
+  left: 10%;
+  animation: float 25s ease-in-out infinite;
+}
+
+.shape-2 {
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(135deg, #000000, #555555);
+  border-radius: 50%;
+  bottom: 5%;
+  right: 5%;
+  animation: float 30s ease-in-out infinite reverse;
+}
+
+.shape-3 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #333333, #000000);
+  border-radius: 50%;
+  top: 50%;
+  right: 15%;
+  animation: float 28s ease-in-out infinite;
+}
+
+.glow-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.2), transparent);
+  filter: blur(30px);
+}
+
+.glow-1 {
+  width: 200px;
+  height: 200px;
+  top: 30%;
+  left: 15%;
+  animation: pulse 5s ease-in-out infinite;
+}
+
+.glow-2 {
+  width: 180px;
+  height: 180px;
+  bottom: 25%;
+  right: 20%;
+  animation: pulse 6s ease-in-out infinite 1s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(40px, -40px);
+  }
+  50% {
+    transform: translate(-30px, 30px);
+  }
+  75% {
+    transform: translate(30px, 40px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.3);
+  }
+}
+
+/* Sticky navbar that appears on scroll */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.navbar.navbar-visible {
+  transform: translateY(0);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.navbar-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: -0.5px;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  align-items: center;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+  position: relative;
+  letter-spacing: 0.3px;
+}
+
+.nav-link:hover {
+  color: #000000;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #000000;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Hero section now uses split layout with flexbox */
+.hero-section {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.floating-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+  opacity: 0.5;
+}
+
+.line-1 {
+  width: 300px;
+  height: 2px;
+  top: 20%;
+  left: 10%;
+  animation: slideRight 8s ease-in-out infinite;
+}
+
+.line-2 {
+  width: 250px;
+  height: 2px;
+  top: 50%;
+  right: 15%;
+  animation: slideLeft 10s ease-in-out infinite;
+}
+
+.line-3 {
+  width: 280px;
+  height: 2px;
+  bottom: 30%;
+  left: 20%;
+  animation: slideRight 12s ease-in-out infinite;
+}
+
+@keyframes slideRight {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+}
+
+@keyframes slideLeft {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-50px);
+  }
+}
+
+/* Split layout: left text, right photo */
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  width: 100%;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-align: left;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333333;
+  letter-spacing: 0.3px;
+}
+
+.experience-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.experience-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: -0.5px;
+}
+
+.experience-description {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #555555;
+  letter-spacing: 0.3px;
+}
+
+/* Right side: circular profile photo */
+.hero-photo-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-photo-container {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.profile-photo-container:hover {
+  transform: scale(1.05);
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section Styles */
+.about-section,
+.tasks-section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 20px;
+  background-color: #ffffff;
+}
+
+.section-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 50px;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+/* About Gemini Section */
+.gemini-description {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 40px;
+  margin-bottom: 60px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.gemini-description:hover {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.gemini-description p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333333;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+.benefits-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.benefits-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.benefit-item:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.benefit-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+}
+
+.benefit-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333333;
+  letter-spacing: 0.3px;
+}
+
+/* Tasks Section */
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+.task-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 30px 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.task-icon {
+  font-size: 2.5rem;
+  display: block;
+}
+
+.task-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000000;
+}
+
+.task-card p {
+  font-size: 0.95rem;
+  color: #666666;
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  position: relative;
+  z-index: 1;
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-content {
+    gap: 40px;
+  }
+
+  .profile-photo-container {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Stack hero content vertically on tablet/mobile */
+  .hero-content {
+    flex-direction: column-reverse;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .hero-text {
+    text-align: center;
+    gap: 20px;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .experience-title {
+    font-size: 1.3rem;
+  }
+
+  .experience-description {
+    font-size: 0.95rem;
+  }
+
+  .profile-photo-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .navbar-menu {
+    gap: 20px;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .hero-section {
+    min-height: 90vh;
+    padding: 40px 20px;
+  }
+
+  .section-heading {
+    font-size: 1.8rem;
+    margin-bottom: 35px;
+  }
+
+  .gemini-description {
+    padding: 30px 20px;
+    margin-bottom: 40px;
+  }
+
+  .gemini-description p {
+    font-size: 1rem;
+  }
+
+  .benefits-heading {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .benefits-list {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .benefit-item {
+    padding: 15px;
+  }
+
+  .benefit-text {
+    font-size: 0.95rem;
+  }
+
+  .about-section,
+  .tasks-section {
+    padding: 70px 20px;
+  }
+
+  .tasks-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .task-card {
+    padding: 20px 15px;
+  }
+
+  .task-icon {
+    font-size: 2rem;
+  }
+
+  .task-card h3 {
+    font-size: 1rem;
+  }
+
+  .task-card p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    height: 60px;
+  }
+
+  .navbar-logo {
+    font-size: 1.1rem;
+  }
+
+  .navbar-menu {
+    gap: 15px;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+  }
+
+  .hero-section {
+    min-height: 80vh;
+    padding: 30px 15px;
+  }
+
+  .hero-content {
+    gap: 25px;
+  }
+
+  .profile-photo-container {
+    width: 160px;
+    height: 160px;
+  }
+
+  .hero-title {
+    font-size: 1.4rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+  }
+
+  .experience-title {
+    font-size: 1.1rem;
+  }
+
+  .experience-description {
+    font-size: 0.9rem;
+  }
+
+  .section-heading {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+  }
+
+  .gemini-description {
+    padding: 20px 15px;
+    margin-bottom: 30px;
+  }
+
+  .gemini-description p {
+    font-size: 0.95rem;
+  }
+
+  .benefits-heading {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .benefits-list {
+    gap: 12px;
+  }
+
+  .benefit-item {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .benefit-icon {
+    font-size: 1.5rem;
+  }
+
+  .benefit-text {
+    font-size: 0.9rem;
+  }
+
+  .about-section,
+  .tasks-section {
+    padding: 50px 15px;
+  }
+
+  .tasks-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .task-card {
+    padding: 18px 12px;
+  }
+
+  .task-icon {
+    font-size: 1.8rem;
+  }
+
+  .task-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .task-card p {
+    font-size: 0.8rem;
+  }
+
+  .footer {
+    padding: 20px 15px;
+    font-size: 0.85rem;
+  }
+}

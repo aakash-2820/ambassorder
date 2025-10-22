@@ -1,134 +1,374 @@
-/* ------------------------------ */
-/* Full-page container */
+/* Auth Container & Background */
 .auth-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #fff; /* Pure white background */
-  overflow: hidden;
-  font-family: 'Arial', sans-serif;
   position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* ------------------------------ */
-/* Moving subtle background elements */
-.moving-bg {
+/* Animated background with floating shapes */
+.auth-background {
   position: absolute;
   top: 0;
   left: 0;
-  width: 200%;
-  height: 200%;
-  background-image: 
-    radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(to right, rgba(0,0,0,0.02) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px;
-  animation: moveBg 30s linear infinite;
+  width: 100%;
+  height: 100%;
   z-index: 0;
+  pointer-events: none;
 }
 
-@keyframes moveBg {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(-50px, 50px); }
-  100% { transform: translate(0, 0); }
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.03);
+  animation: float 20s infinite ease-in-out;
 }
 
-/* ------------------------------ */
-/* Form Box */
-.form-box {
+.shape-1 {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -50px;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 200px;
+  height: 200px;
+  bottom: -50px;
+  left: 10%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  right: 5%;
+  animation-delay: 4s;
+}
+
+.floating-line {
+  position: absolute;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+  animation: slideIn 15s infinite linear;
+}
+
+.line-1 {
+  width: 200px;
+  height: 1px;
+  top: 20%;
+  left: -200px;
+  animation-delay: 0s;
+}
+
+.line-2 {
+  width: 150px;
+  height: 1px;
+  bottom: 30%;
+  right: -150px;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-40px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+}
+
+/* Auth Content */
+.auth-content {
   position: relative;
-  z-index: 1;
-  width: 400px;
-  padding: 50px 35px;
-  background: #fff; /* White form */
+  z-index: 10;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Auth Card */
+.auth-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  color: #000; /* Black text */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 48px 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
-.form-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+.auth-card:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
 }
 
-/* ------------------------------ */
-/* Form Heading */
-.form-box h2 {
-  margin-bottom: 30px;
-  font-size: 28px;
+/* Typography */
+.auth-title {
+  font-size: 32px;
   font-weight: 700;
-  letter-spacing: 1px;
+  color: #000000;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
 }
 
-/* ------------------------------ */
-/* Inputs */
-.form-box input {
-  width: 100%;
-  padding: 15px 12px;
-  margin: 12px 0;
-  border: 1px solid #000;
-  border-radius: 8px;
-  font-size: 15px;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-.form-box input:focus {
-  border-color: #000;
-  box-shadow: 0 0 6px rgba(0,0,0,0.1);
-}
-
-/* ------------------------------ */
-/* Login Button */
-.submit-btn {
-  width: 100%;
-  padding: 16px;
-  margin-top: 20px;
-  background: #000;
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.submit-btn:hover {
-  background: #333;
-}
-
-/* ------------------------------ */
-/* Create Account Link */
-.create-account {
-  margin-top: 20px;
+.auth-subtitle {
   font-size: 14px;
+  color: #666666;
+  margin: 0 0 32px 0;
+  font-weight: 400;
 }
 
-.create-account span {
-  color: #000;
-  font-weight: 700;
+/* Form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #999999;
+}
+
+.form-input:focus {
+  background-color: #ffffff;
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.form-input:hover {
+  border-color: #cccccc;
+}
+
+/* Error Message */
+.error-message {
+  padding: 12px 16px;
+  background-color: #fff5f5;
+  border: 1px solid #ffcccc;
+  border-radius: 8px;
+  color: #cc0000;
+  font-size: 13px;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button */
+.auth-button {
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #000000;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  margin-left: 5px;
-  text-decoration: underline;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* ------------------------------ */
-/* Responsive for Mobile */
-@media (max-width: 480px) {
-  .form-box {
-    width: 90%;
-    padding: 35px 20px;
+.auth-button:hover:not(:disabled) {
+  background-color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.auth-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Footer */
+.auth-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.auth-text {
+  font-size: 13px;
+  color: #666666;
+  margin: 0;
+}
+
+.auth-link {
+  color: #000000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.auth-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #000000;
+  transition: width 0.3s ease;
+}
+
+.auth-link:hover::after {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .auth-card {
+    padding: 32px 24px;
   }
 
-  .form-box h2 {
+  .auth-title {
     font-size: 24px;
   }
 
-  .submit-btn {
+  .auth-subtitle {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .form-input {
+    padding: 11px 14px;
+    font-size: 13px;
+  }
+
+  .auth-button {
+    padding: 12px 20px;
     font-size: 14px;
-    padding: 14px;
+  }
+
+  .floating-shape {
+    opacity: 0.5;
+  }
+
+  .floating-line {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-content {
+    max-width: 100%;
+  }
+
+  .auth-card {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  .auth-title {
+    font-size: 20px;
+  }
+
+  .auth-subtitle {
+    font-size: 12px;
+  }
+
+  .form-group {
+    gap: 6px;
+  }
+
+  .form-label {
+    font-size: 12px;
+  }
+
+  .form-input {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .auth-button {
+    padding: 11px 18px;
+    font-size: 13px;
+  }
+
+  .auth-text {
+    font-size: 12px;
   }
 }
