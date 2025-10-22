@@ -38,6 +38,7 @@ export default function Login() {
         throw new Error(data.error || "Login failed");
       }
       console.log("✅ Login successful:", data);
+      localStorage.setItem("token", data.token);
       setTimeout(() => {
       setIsLoading(false);
       console.log("Login successful:", { email });

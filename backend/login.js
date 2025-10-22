@@ -89,7 +89,7 @@ app.post("/api/logins", async (req, res) => {
 
     const user = userQuery.rows[0];
 
-    // Compare password
+    
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ error: "Invalid credentials" });
@@ -118,7 +118,7 @@ function authMiddleware(req, res, next) {
     return res.status(401).json({ error: "Invalid token" });
   }
 }
-// --- Start server ---
+
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
