@@ -58,7 +58,7 @@ export default function Register() {
     }
 
     console.log("✅ Registration successful:", data);
-    window.location.href = "/login"; // redirect after success
+    window.location.href = "/"; // redirect after success
 
   } catch (err) {
     console.error("❌ Error during registration:", err.message);
