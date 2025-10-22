@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const { Pool } = require("pg");
 const cors = require("cors");
 require("dotenv").config();
+const session = require("express-session");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,8 +28,8 @@ pool.connect()
     console.error("❌ Database connection error:", err.message);
     process.exit(1);
   });
+const JWT_SECRET = "supersecret"; 
 
-// --- Register Route ---
 app.post("/api/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -92,21 +94,30 @@ app.post("/api/logins", async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ error: "Invalid credentials" });
     }
+    const token = jwt.sign({id: user.id,username:user.username}, JWT_SECRET, { expiresIn: "1h" });
 
     res.json({
       message: "Login successful",
-      user: {
-        id: user.id,
-        username: user.username,
-        email: user.email
-      },
+      token
     });
   } catch (err) {
     console.error("Login error:", err.message);
     res.status(500).json({ error: "Server error" });
   }
 });
+function authMiddleware(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  if (!authHeader) return res.status(401).json({ error: "No token provided" });
 
+  const token = authHeader.split(" ")[1];
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: "Invalid token" });
+  }
+}
 // --- Start server ---
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
