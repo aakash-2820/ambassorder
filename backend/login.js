@@ -119,6 +119,28 @@ function authMiddleware(req, res, next) {
   }
 }
 
+
+app.post("/api/tasks/complete", authMiddleware, async (req, res) => {
+const { taskName } = req.body;
+const userId = req.user.id;
+console.log(taskName);
+
+  if (!userId) return res.status(401).json({ error: "Not logged in" });
+  if (!taskName || !/^task[1-8]$/.test(taskName)) return res.status(400).json({ error: "Invalid task name" });
+
+  try {
+    await pool.query(
+      `UPDATE logins SET ${taskName}='YES' WHERE id=$1`,
+      [userId]
+    );
+
+    res.json({ message: `${taskName} marked as YES for user ${userId}` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });

@@ -25,9 +25,10 @@
 .floating-shape {
   position: absolute;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0); /* or 0.15 for soft white */
   animation: float 20s infinite ease-in-out;
 }
+
 
 .shape-1 {
   width: 300px;
@@ -53,9 +54,10 @@
   animation-delay: 4s;
 }
 
+
 .floating-line {
   position: absolute;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
   animation: slideIn 15s infinite linear;
 }
 

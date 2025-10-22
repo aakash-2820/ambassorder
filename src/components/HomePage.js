@@ -23,35 +23,38 @@ export default function HomePage() {
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" })
   }
-  const handleTaskClick = async (e, taskId) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found, user might not be logged in.");
-      return;
-    }
-
-    e.preventDefault();
-    try {
-      const response = await fetch(`http://localhost:5000/api/tasks/complete`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({ taskId }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Task completion failed");
-      }
-      console.log("✅ Task marked as completed:", data);
-    }
-    catch (err) {
-      console.error("Error during task completion:", err.message);
-    }
+ const handleTaskClick = async (e, taskId) => {
+  const token = localStorage.getItem("token");
+  console.log(taskId);
+  if (!token) {
+    console.error("No token found, user might not be logged in.");
+    return;
   }
+
+  // ❌ Remove e.preventDefault();
+
+  try {
+    const response = await fetch(`http://localhost:5000/api/tasks/complete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ taskName : `task${taskId}` }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Task completion failed");
+    }
+    console.log("✅ Task marked as completed:", data);
+  }
+  catch (err) {
+    console.error("Error during task completion:", err.message);
+  }
+}
+
 
   return (
     <div className="home-page">
@@ -168,42 +171,42 @@ export default function HomePage() {
           <h2 className="section-heading">Tasks & Activities</h2>
 
           <div className="tasks-grid">
-            <a href="https://forms.gle/example1" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 1)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator.html?uid=2988&promptId=18" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 1)}>
               <div className="task-icon">📝</div>
               <h3>Task 1</h3>
               <p>Complete the introductory survey</p>
             </a>
-            <a href="https://forms.gle/example2" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 2)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator.html?uid=2988&promptId=19" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 2)}>
               <div className="task-icon">💻</div>
               <h3>Task 2</h3>
               <p>Build a project with Gemini</p>
             </a>
-            <a href="https://forms.gle/example3" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 3)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator.html?uid=2988&promptId=20" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 3)}>
               <div className="task-icon">🎓</div>
               <h3>Task 3</h3>
               <p>Complete the learning module</p>
             </a>
-            <a href="https://forms.gle/example4" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 4)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator.html?uid=2988&promptId=21" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 4)}>
               <div className="task-icon">🌟</div>
               <h3>Task 4</h3>
               <p>Participate in the challenge</p>
             </a>
-            <a href="https://forms.gle/example5" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 5)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator.html?uid=2988&promptId=22" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 5)}>
               <div className="task-icon">🚀</div>
               <h3>Task 5</h3>
               <p>Share your project showcase</p>
             </a>
-            <a href="https://forms.gle/example6" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 6)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator?uid=3916&promptId=20" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 6)}>
               <div className="task-icon">🎨</div>
               <h3>Task 6</h3>
               <p>Create a design with AI</p>
             </a>
-            <a href="https://forms.gle/example7" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 6)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator?uid=3916&promptId=19" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 6)}>
               <div className="task-icon">📊</div>
               <h3>Task 7</h3>
               <p>Analyze data with Gemini</p>
             </a>
-            <a href="https://forms.gle/example8" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 7)}>
+            <a href="https://aiskillshouse.com/student/qr-mediator?uid=3916&promptId=18" target="_blank" rel="noopener noreferrer" className="task-card" onClick={(e) =>handleTaskClick(e, 7)}>
               <div className="task-icon">🏆</div>
               <h3>Task 8</h3>
               <p>Submit your final project</p>

@@ -44,7 +44,7 @@ export default function Login() {
       console.log("Login successful:", { email });
 
       // ✅ Simple redirect to home page (React)
-      window.location.href = "/";
+      window.location.href = "/HomePage";
     }, 1000);
     }
     catch(err) {
@@ -56,13 +56,7 @@ export default function Login() {
 
   return (
     <div className="auth-container">
-      <div className="auth-background">
-        <div className="floating-shape shape-1"></div>
-        <div className="floating-shape shape-2"></div>
-        <div className="floating-shape shape-3"></div>
-        <div className="floating-line line-1"></div>
-        <div className="floating-line line-2"></div>
-      </div>
+     
 
       <div className="auth-content">
         <div className="auth-card">
@@ -96,11 +90,11 @@ export default function Login() {
               />
             </div>
 
-            <Link to="/HomePage">
+            
             <button type="submit" disabled={isLoading} className="auth-button">
               {isLoading ? "Signing in..." : "Login"}
             </button>
-            </Link>
+          
           </form>
 
           <div className="auth-footer">
