@@ -30,7 +30,7 @@ pool.connect()
   });
 const JWT_SECRET = "supersecret"; 
 
-app.post("/api/register", async (req, res) => {
+app.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -69,7 +69,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 // --- Login Route ---
-app.post("/api/logins", async (req, res) => {
+app.post("/logins", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -120,7 +120,7 @@ function authMiddleware(req, res, next) {
 }
 
 
-app.post("/api/tasks/complete", authMiddleware, async (req, res) => {
+app.post("/tasks/complete", authMiddleware, async (req, res) => {
 const { taskName } = req.body;
 const userId = req.user.id;
 console.log(taskName);
