@@ -24,7 +24,7 @@ export default function Login() {
 
     setIsLoading(true);
     try{
-      const response = await fetch("http://localhost:5000/api/logins", {
+      const response = await fetch("https://ambassador.selfmade.technology/api/logins", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
