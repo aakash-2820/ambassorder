@@ -23,37 +23,37 @@ export default function HomePage() {
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" })
   }
- const handleTaskClick = async (e, taskId) => {
-  const token = localStorage.getItem("token");
-  console.log(taskId);
-  if (!token) {
-    console.error("No token found, user might not be logged in.");
-    return;
-  }
+ // const handleTaskClick = async (e, taskId) => {
+ //  const token = localStorage.getItem("token");
+ //  console.log(taskId);
+ //  if (!token) {
+ //    console.error("No token found, user might not be logged in.");
+ //    return;
+ //  }
 
-  // ❌ Remove e.preventDefault();
+//   // ❌ Remove e.preventDefault();
 
-  try {
-    const response = await fetch(`https://ambassador.selfmade.technology/api/tasks/complete`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify({ taskName : `task${taskId}` }),
-    });
+//   try {
+//     const response = await fetch(`https://ambassador.selfmade.technology/api/tasks/complete`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Authorization": `Bearer ${token}`
+//       },
+//       body: JSON.stringify({ taskName : `task${taskId}` }),
+//     });
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(data.error || "Task completion failed");
-    }
-    console.log("✅ Task marked as completed:", data);
-  }
-  catch (err) {
-    console.error("Error during task completion:", err.message);
-  }
-}
+//     if (!response.ok) {
+//       throw new Error(data.error || "Task completion failed");
+//     }
+//     console.log("✅ Task marked as completed:", data);
+//   }
+//   catch (err) {
+//     console.error("Error during task completion:", err.message);
+//   }
+// }
 
 
   return (
